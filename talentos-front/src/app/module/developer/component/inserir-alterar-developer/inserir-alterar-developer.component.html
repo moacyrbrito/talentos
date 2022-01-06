@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card p-3 mt-3">
+        <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <h4>
+                {{
+                  desenvolvedor && desenvolvedor.id > 0 ? "Editar " : "Novo "
+                }}
+                Desenvolvedor
+              </h4>
+            </div>
+            <div class="col-md-6 text-end">
+              <button
+                type="button"
+                class="btn btn-danger m-b-0 px-3 py-2"
+                style="margin-right: 5px"
+                (click)="onCancel()"
+              > Cancelar
+              </button>
+              <button type="submit" class="btn btn-primary m-b-0 px-3 py-2">
+                Salvar
+              </button>
+            </div>
+          </div>
+          <hr />
+          <div *ngIf="formulario">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-6 pt-3">
+                    <label for="id">Id</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="id"
+                      readonly
+                      formControlName="id"
+                    />
+                  </div>
+                  <div class="col-md-8 pt-3">
+                    <label for="nome">Nome</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="nome"
+                      [ngClass]="
+                        (formulario.controls.nome.touched || submitted) &&
+                        formulario.controls.nome.invalid
+                          ? 'is-invalid'
+                          : formulario.controls.nome.touched &&
+                            formulario.controls.nome.valid
+                          ? 'is-valid'
+                          : null
+                      "
+                      formControlName="nome"
+                    />
+                  </div>
+                  <div class="col-md-4 pt-3">
+                    <label for="nome">Nível</label>
+                    <select
+                      formControlName="nivel"
+                      id="nivel"
+                      class="form-control"
+                      [ngClass]="
+                        (formulario.controls.nivel.touched || submitted) &&
+                        formulario.controls.nivel.invalid
+                          ? 'is-invalid'
+                          : formulario.controls.nivel.touched &&
+                            formulario.controls.nivel.valid
+                          ? 'is-valid'
+                          : null
+                      "
+                    >
+                      <option value="" disabled selected>Selecione...</option>
+                      <option *ngFor="let nivel of niveis" [value]="nivel.id">
+                        {{ nivel.nivel }}
+                      </option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-4 pt-3">
+                    <label for="nome">Sexo</label>
+                    <select
+                      formControlName="sexo"
+                      id="sexo"
+                      class="form-control"
+                      [ngClass]="
+                        (formulario.controls.sexo.touched || submitted) &&
+                        formulario.controls.sexo.invalid
+                          ? 'is-invalid'
+                          : formulario.controls.sexo.touched &&
+                            formulario.controls.sexo.valid
+                          ? 'is-valid'
+                          : null
+                      "
+                    >
+                      <option [ngValue]="tipoSexo.NAOINFORMADO">
+                        Não informar
+                      </option>
+                      <option [ngValue]="tipoSexo.FEMININO">Feminino</option>
+                      <option [ngValue]="tipoSexo.MASCULINO">Masculino</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4 pt-3">
+                    <label for="datanascimento">Data nascimento</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="datanascimento"
+                      max="2010-01-01"
+                      [ngClass]="
+                        (formulario.controls.datanascimento.touched ||
+                          submitted) &&
+                        formulario.controls.datanascimento.invalid
+                          ? 'is-invalid'
+                          : formulario.controls.datanascimento.touched &&
+                            formulario.controls.datanascimento.valid
+                          ? 'is-valid'
+                          : null
+                      "
+                      formControlName="datanascimento"
+                    />
+                  </div>
+                  <div class="col-md-4 pt-3">
+                    <label for="hobby">Hobby</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="hobby"
+                      [ngClass]="
+                        (formulario.controls.hobby.touched || submitted) &&
+                        formulario.controls.hobby.invalid
+                          ? 'is-invalid'
+                          : formulario.controls.hobby.touched &&
+                            formulario.controls.hobby.valid
+                          ? 'is-valid'
+                          : null
+                      "
+                      formControlName="hobby"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

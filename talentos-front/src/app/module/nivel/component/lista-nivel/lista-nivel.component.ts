@@ -1,3 +1,4 @@
+import { Desenvolvedor } from './../../../../model/desenvolvedor';
 import { MetaPaginate } from './../../../../model/meta-paginate';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -41,14 +42,6 @@ export class ListaNivelComponent implements OnInit {
     }
   }
 
-  // onFilter(event){
-  //   let key_filter = event[1];
-  //   let filter = event[0];
-  //   this.niveis = this.niveisBd.filter(nivel => {
-  //     return nivel[key_filter].toString().toLowerCase().includes(filter)
-  //   });
-  // }
-
   onSort(index) {
     this.waySort = (this.waySort == "asc") ? "desc" : "asc";
     Utils.onSortUtil(this.niveis, index, this.waySort);
@@ -72,5 +65,9 @@ export class ListaNivelComponent implements OnInit {
       this._alertService.alertStatus('success', 'Sucesso!', 'Registro removido com sucesso!!', 3000);
       this.listarNivel(this.lastParams);
     });
+  }
+
+  qtdDesenvolvedores(desenvolvedores: Desenvolvedor[]){
+    return desenvolvedores.length;
   }
 }

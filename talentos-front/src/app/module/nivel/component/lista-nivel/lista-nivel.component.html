@@ -29,7 +29,6 @@
             </div>
           </ng-template>
           <div *ngIf="niveis; else mensagemCarregando">
-            <!-- <app-busca (filterNow)="onFilter($event)" [fieldsFilter]="fieldsFilter"></app-busca> -->
             <div class="row">
               <div class="col-12 mt-3">
                 <div class="tableFixHead">
@@ -38,6 +37,7 @@
                       <tr >
                         <th scope="col" (click)="onSort('id')"><div>Cod. <i class="fa fa-sort sort-btn" aria-hidden="true"></i></div></th>
                         <th scope="col" (click)="onSort('nivel')">Nível <i class="fa fa-sort sort-btn" aria-hidden="true"></i></th>
+                        <th scope="col" (click)="onSort('nivel')">qtd Desenvolvedores <i class="fa fa-sort sort-btn" aria-hidden="true"></i></th>
                         <th scope="col"></th>
                       </tr>
                     </thead>
@@ -45,6 +45,7 @@
                       <tr *ngFor="let nivel of niveis" >
                         <td class="py-1">{{ nivel.id }}</td>
                         <td class="py-1">{{ nivel.nivel }}</td>
+                        <td class="py-1">{{ qtdDesenvolvedores(nivel.desenvolvedores) }}</td>
                         <td class="text-end py-1">
                           <button class="btn btn-primary btn-sm mx-2" (click)="onAlterar(nivel.id)" >
                             <i class="fa fa-pencil m-0" aria-hidden="true"></i>
